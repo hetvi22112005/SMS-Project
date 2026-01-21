@@ -11,7 +11,6 @@ namespace StudentManagementSystem.Models
         public string ExamName { get; set; }
 
         public int CourseId { get; set; }
-        public int Semester { get; set; }
 
         public DateTime ExamDate { get; set; }
 

@@ -12,9 +12,6 @@ namespace StudentManagementSystem.Models
         [StringLength(100)]
         public string Qualification { get; set; }
 
-        [StringLength(50)]
-        public string Department { get; set; }
-
         public int Experience { get; set; }
 
         [StringLength(500)]

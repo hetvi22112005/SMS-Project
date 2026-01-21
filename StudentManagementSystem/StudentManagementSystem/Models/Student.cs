@@ -13,7 +13,6 @@ namespace StudentManagementSystem.Models
         [Required, StringLength(20)]
         public string EnrollmentNo { get; set; }
 
-        public int Semester { get; set; }
         public DateTime DOB { get; set; }
 
         [StringLength(500)]
