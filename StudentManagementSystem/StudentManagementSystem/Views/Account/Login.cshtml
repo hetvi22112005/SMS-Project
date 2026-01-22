@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTrack - Student Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-teal-50 min-h-screen flex items-center justify-center p-4">
+    <div class="login-container w-full max-w-md">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <div class="bg-teal-600 py-6 px-8 text-center">
+                <div class="flex justify-center mb-4">
+                    <div class="bg-white p-3 rounded-full shadow-lg">
+                        <i data-feather="book-open" class="text-teal-600 w-8 h-8"></i>
+                    </div>
+                </div>
+                <h1 class="text-2xl font-bold text-white">Welcome to EduTrack</h1>
+                <p class="text-teal-100 mt-1">Student Management Portal</p>
+            </div>
+
+            <form class="px-8 py-6">
+                <div class="mb-5">
+                    <label class="block text-teal-800 text-sm font-medium mb-2" for="email">
+                        Student ID / Email
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="user" class="text-teal-500"></i>
+                        </div>
+                        <input id="email" type="text" class="w-full pl-10 pr-3 py-3 border border-teal-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" placeholder="Enter your ID or email">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-teal-800 text-sm font-medium mb-2" for="password">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="lock" class="text-teal-500"></i>
+                        </div>
+                        <input id="password" type="password" class="w-full pl-10 pr-3 py-3 border border-teal-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" placeholder="Enter your password">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                            <i data-feather="eye" class="text-teal-500 hover:text-teal-700" id="togglePassword"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <input id="remember" type="checkbox" class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-teal-300 rounded">
+                        <label for="remember" class="ml-2 block text-sm text-teal-700">
+                            Remember me
+                        </label>
+                    </div>
+                    <div>
+                        <a href="#" class="text-sm font-medium text-teal-600 hover:text-teal-500">
+                            Forgot password?
+                        </a>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition duration-150 ease-in-out transform hover:scale-105">
+                    Sign In
+                    <i data-feather="log-in" class="inline ml-2"></i>
+                </button>
+
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-teal-700">
+                        New student?
+                        <a asp-controller="Account" asp-action="Register" class="font-medium text-teal-600 hover:text-teal-500">
+                            Register here
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <div class="mt-8 text-center">
+            <p class="text-xs text-teal-600">
+                © 2023 EduTrack Student Management System. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
