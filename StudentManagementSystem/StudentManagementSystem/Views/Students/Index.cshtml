@@ -3,33 +3,46 @@
 @{
     ViewData["Title"] = "Students";
 }
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/students.css" asp-append-version="true" />
+}
+
 <div class="container-fluid mt-4">
 
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- Header with Search and Manage Button -->
+    <div class="student-page-header d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold">Students</h3>
-        <a asp-action="Details" class="btn btn-primary">
-            <i class="bi bi-plus-lg"></i> Manage Students
+        <!-- Search Bar -->
+        <form class="student-search me-3" method="get" asp-action="Index">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search students..." name="searchTerm" />
+                <button class="btn btn-teal" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- Manage Students Button -->
+        <a asp-action="Details" class="btn btn-manage-students">
+            <i class="bi bi-plus-lg me-1"></i> Manage Students
         </a>
     </div>
 
-    <!-- Cards -->
+    <!-- Student Cards -->
     <div class="row g-4">
-
         @if (Model != null && Model.Any())
         {
             foreach (var student in Model)
             {
                 <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 student-card">
+                    <div class="student-card card h-100 shadow-sm border-0">
 
                         <!-- Photo -->
                         <div class="text-center pt-4">
                             @if (!string.IsNullOrEmpty(student.Photo))
                             {
-                                <img src="@Url.Content(student.Photo)"
-                                     class="rounded-circle mb-2"
-                                     style="width:80px;height:80px;object-fit:cover;" />
+                                <img src="@Url.Content(student.Photo)" alt="Student Photo" />
                             }
                             else
                             {
@@ -42,19 +55,12 @@
 
                         <!-- Body -->
                         <div class="card-body text-center">
-                            <h5 class="fw-bold mb-1">
-                                @student.User?.FullName
-                            </h5>
+                            <h5 class="fw-bold mb-1">@student.User?.FullName</h5>
+                            <p class="text-muted small mb-2">@student.User?.Email</p>
 
-                            <p class="text-muted small mb-2">
-                                @student.User?.Email
-                            </p>
+                            <span class="badge badge-department mb-2">@student.Course?.CourseName</span>
 
-                            <span class="badge bg-info mb-3">
-                                @student.Course?.CourseName
-                            </span>
-
-                            <div class="small text-muted">
+                            <div class="small text-muted mt-2">
                                 <div>Enrollment: <strong>@student.EnrollmentNo</strong></div>
                                 <div>Semester: <strong>@student.Semester</strong></div>
                             </div>
@@ -71,6 +77,5 @@
                 </div>
             </div>
         }
-
     </div>
 </div>

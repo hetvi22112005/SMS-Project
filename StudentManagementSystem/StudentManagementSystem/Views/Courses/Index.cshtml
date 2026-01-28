@@ -1,6 +1,67 @@
-﻿@{
-    ViewData["Title"] = "Courses";
+﻿@model IEnumerable<Course>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/courses.css" asp-append-version="true" />
 }
 
-<h2>Courses</h2>
-<p>UI coming soon...</p>
+<div class="course-page-header">
+    <h2>Courses</h2>
+
+    <form class="me-3" method="get" asp-action="Index">
+        <div class="input-group course-search">
+            <input type="text" class="form-control" placeholder="Search courses..." name="searchTerm" />
+            <button class="btn btn-teal" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
+
+    <a asp-action="Details" class="btn btn-manage-courses">
+        <i class="bi bi-gear-fill me-1"></i> Manage Courses
+    </a>
+</div>
+
+<div class="row g-4">
+    @foreach (var course in Model)
+    {
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="course-card">
+
+                <!-- Icon -->
+                <div class="course-icon">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                </div>
+
+                <!-- Body -->
+                <div class="course-body">
+                    <h5>@course.CourseName</h5>
+
+                    <span class="course-dept">@course.Department</span>
+
+                    <p class="course-desc">
+                        A professional program under the
+                        <strong>@course.Department</strong> department designed
+                        for academic and career development.
+                    </p>
+
+                    <div class="course-meta">
+                        <div>
+                            <i class="bi bi-clock-history"></i>
+                            @course.Duration Semesters
+                        </div>
+                        <div>
+                            <i class="bi bi-award-fill"></i>
+                            @course.TotalCredits Credits
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="course-footer">
+                    <span class="course-status">Active</span>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

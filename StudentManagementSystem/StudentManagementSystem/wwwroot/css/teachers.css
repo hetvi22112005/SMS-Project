@@ -1,0 +1,114 @@
+﻿/* =========================
+   TEACHERS PAGE – TEAL THEME
+   ========================= */
+
+/* Page Header */
+.teacher-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.8rem;
+}
+
+    .teacher-page-header h3 {
+        font-weight: 800;
+        letter-spacing: 0.3px;
+    }
+
+/* Manage Button */
+.btn-manage-teachers {
+    background: linear-gradient(135deg, #0d9488, #14b8a6);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 600;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+    .btn-manage-teachers i {
+        margin-right: 6px;
+    }
+
+    .btn-manage-teachers:hover {
+        background: linear-gradient(135deg, #0f766e, #0d9488);
+        color: #fff;
+    }
+
+/* Teacher Card */
+.teacher-card {
+    background: #ffffff;
+    border-radius: 16px;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    transition: all 0.35s ease;
+}
+
+    .teacher-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 28px 55px rgba(13,148,136,0.25);
+    }
+
+    /* Photo Circle */
+    .teacher-card img {
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Card Body */
+    .teacher-card .card-body {
+        text-align: center;
+        padding: 18px;
+    }
+
+        .teacher-card .card-body h5 {
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .teacher-card .card-body p,
+        .teacher-card .card-body .badge {
+            margin-bottom: 8px;
+        }
+
+.badge-department {
+    display: inline-block;
+    background: #ccfbf1;
+    color: #0f766e;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Search Bar */
+.teacher-search {
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+    .teacher-search input.form-control {
+        border: none;
+        border-radius: 50px 0 0 50px;
+        padding: 0.5rem 1rem;
+    }
+
+    .teacher-search button.btn-teal {
+        background-color: #008080;
+        color: #fff;
+        border: none;
+        border-radius: 0 50px 50px 0;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+        .teacher-search button.btn-teal:hover {
+            background-color: #006666;
+        }

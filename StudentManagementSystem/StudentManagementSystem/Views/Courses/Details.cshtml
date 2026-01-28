@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Course>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Manage Courses</h2>
+
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> Add Course
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Duration</th>
+                <th>Credits</th>
+                <th>Status</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.CourseName</td>
+                    <td>@course.Department</td>
+                    <td>@course.Duration</td>
+                    <td>@course.TotalCredits</td>
+                    <td>
+                        @if (course.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Inactive</span>
+                        }
+                    </td>
+
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@course.CourseId"
+                           class="text-primary">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+
+                    <td class="text-center">
+                        <a asp-action="Delete" asp-route-id="@course.CourseId"
+                           class="text-danger"
+                           onclick="return confirm('Delete this course?');">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
