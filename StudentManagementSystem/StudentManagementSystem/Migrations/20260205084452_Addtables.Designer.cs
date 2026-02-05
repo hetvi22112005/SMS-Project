@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace StudentManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260203113649_FinalModelss")]
-    partial class FinalModelss
+    [Migration("20260205084452_Addtables")]
+    partial class Addtables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,7 +67,7 @@ namespace StudentManagementSystem.Migrations
 
                     b.HasKey("CourseId");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("StudentManagementSystem.Models.Exam", b =>
@@ -123,7 +123,7 @@ namespace StudentManagementSystem.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Exam");
+                    b.ToTable("Exams");
                 });
 
             modelBuilder.Entity("StudentManagementSystem.Models.Result", b =>
@@ -154,6 +154,12 @@ namespace StudentManagementSystem.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
+                    b.Property<bool>("IsPass")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(10)
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
                     b.Property<decimal>("MarksObtained")
                         .HasColumnType("decimal(5,2)");
 
@@ -165,11 +171,6 @@ namespace StudentManagementSystem.Migrations
 
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ResultStatus")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
@@ -190,7 +191,7 @@ namespace StudentManagementSystem.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Result");
+                    b.ToTable("Results");
                 });
 
             modelBuilder.Entity("StudentManagementSystem.Models.Student", b =>
@@ -237,7 +238,7 @@ namespace StudentManagementSystem.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Student");
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("StudentManagementSystem.Models.Teacher", b =>
@@ -285,7 +286,7 @@ namespace StudentManagementSystem.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("StudentManagementSystem.Models.User", b =>
@@ -331,7 +332,7 @@ namespace StudentManagementSystem.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("StudentManagementSystem.Models.Exam", b =>

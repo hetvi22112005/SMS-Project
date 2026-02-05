@@ -17,7 +17,7 @@ namespace StudentManagementSystem.Controllers
             //   return RedirectToAction("Login", "Account");
 
             //return View(_context.Students.ToList());
-            var students = _context.Student
+            var students = _context.Students
             .Include(s => s.User)
             .Include(s => s.Course)
             .ToList();
@@ -27,7 +27,7 @@ namespace StudentManagementSystem.Controllers
         }
         public IActionResult Details()
         {
-            var student = _context.Student
+            var student = _context.Students
                 .Include(s => s.User)
                 .Include(s => s.Course)
                 .ToList();

@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StudentManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class FinalModelss : Migration
+    public partial class Addtables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Course",
+                name: "Courses",
                 columns: table => new
                 {
                     CourseId = table.Column<int>(type: "int", nullable: false)
@@ -28,11 +28,11 @@ namespace StudentManagementSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.CourseId);
+                    table.PrimaryKey("PK_Courses", x => x.CourseId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
@@ -47,11 +47,11 @@ namespace StudentManagementSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Exam",
+                name: "Exams",
                 columns: table => new
                 {
                     ExamId = table.Column<int>(type: "int", nullable: false)
@@ -70,17 +70,17 @@ namespace StudentManagementSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Exam", x => x.ExamId);
+                    table.PrimaryKey("PK_Exams", x => x.ExamId);
                     table.ForeignKey(
-                        name: "FK_Exam_Course_CourseId",
+                        name: "FK_Exams_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Student",
+                name: "Students",
                 columns: table => new
                 {
                     StudentId = table.Column<int>(type: "int", nullable: false)
@@ -96,23 +96,23 @@ namespace StudentManagementSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.StudentId);
+                    table.PrimaryKey("PK_Students", x => x.StudentId);
                     table.ForeignKey(
-                        name: "FK_Student_Course_CourseId",
+                        name: "FK_Students_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Student_User_UserId",
+                        name: "FK_Students_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teacher",
+                name: "Teachers",
                 columns: table => new
                 {
                     TeacherId = table.Column<int>(type: "int", nullable: false)
@@ -128,17 +128,17 @@ namespace StudentManagementSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teacher", x => x.TeacherId);
+                    table.PrimaryKey("PK_Teachers", x => x.TeacherId);
                     table.ForeignKey(
-                        name: "FK_Teacher_User_UserId",
+                        name: "FK_Teachers_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Result",
+                name: "Results",
                 columns: table => new
                 {
                     ResultId = table.Column<int>(type: "int", nullable: false)
@@ -151,7 +151,7 @@ namespace StudentManagementSystem.Migrations
                     MaxMarks = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Percentage = table.Column<decimal>(type: "decimal(5,2)", nullable: true),
                     Grade = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
-                    ResultStatus = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    IsPass = table.Column<bool>(type: "bit", maxLength: 10, nullable: false, defaultValue: true),
                     Remarks = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
@@ -159,72 +159,72 @@ namespace StudentManagementSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Result", x => x.ResultId);
+                    table.PrimaryKey("PK_Results", x => x.ResultId);
                     table.ForeignKey(
-                        name: "FK_Result_Course_CourseId",
+                        name: "FK_Results_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Result_Exam_ExamId",
+                        name: "FK_Results_Exams_ExamId",
                         column: x => x.ExamId,
-                        principalTable: "Exam",
+                        principalTable: "Exams",
                         principalColumn: "ExamId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Result_Student_StudentId",
+                        name: "FK_Results_Students_StudentId",
                         column: x => x.StudentId,
-                        principalTable: "Student",
+                        principalTable: "Students",
                         principalColumn: "StudentId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Result_Teacher_TeacherId",
+                        name: "FK_Results_Teachers_TeacherId",
                         column: x => x.TeacherId,
-                        principalTable: "Teacher",
+                        principalTable: "Teachers",
                         principalColumn: "TeacherId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exam_CourseId",
-                table: "Exam",
+                name: "IX_Exams_CourseId",
+                table: "Exams",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Result_CourseId",
-                table: "Result",
+                name: "IX_Results_CourseId",
+                table: "Results",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Result_ExamId",
-                table: "Result",
+                name: "IX_Results_ExamId",
+                table: "Results",
                 column: "ExamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Result_StudentId",
-                table: "Result",
+                name: "IX_Results_StudentId",
+                table: "Results",
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Result_TeacherId",
-                table: "Result",
+                name: "IX_Results_TeacherId",
+                table: "Results",
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Student_CourseId",
-                table: "Student",
+                name: "IX_Students_CourseId",
+                table: "Students",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Student_UserId",
-                table: "Student",
+                name: "IX_Students_UserId",
+                table: "Students",
                 column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_UserId",
-                table: "Teacher",
+                name: "IX_Teachers_UserId",
+                table: "Teachers",
                 column: "UserId",
                 unique: true);
         }
@@ -233,22 +233,22 @@ namespace StudentManagementSystem.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Result");
+                name: "Results");
 
             migrationBuilder.DropTable(
-                name: "Exam");
+                name: "Exams");
 
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "Students");
 
             migrationBuilder.DropTable(
-                name: "Teacher");
+                name: "Teachers");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

@@ -6,12 +6,12 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
 
-    public DbSet<User> User { get; set; }
-    public DbSet<Student> Student { get; set; }
-    public DbSet<Teacher> Teacher { get; set; }
-    public DbSet<Course> Course { get; set; }
-    public DbSet<Exam> Exam { get; set; }
-    public DbSet<Result> Result { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Teacher> Teachers { get; set; }
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Exam> Exams { get; set; }
+    public DbSet<Result> Results { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -163,7 +163,7 @@ public class ApplicationDbContext : DbContext
             entity.Property(r => r.Grade)
                   .HasMaxLength(5);
 
-            entity.Property(r => r.ResultStatus)
+            entity.Property(r => r.IsPass)
                   .HasMaxLength(10)
                   .IsRequired();
 
@@ -192,6 +192,9 @@ public class ApplicationDbContext : DbContext
                   .WithMany(t => t.Results)
                   .HasForeignKey(r => r.TeacherId)
                   .OnDelete(DeleteBehavior.Restrict);
+
+            entity.Property(r => r.IsPass)
+                  .HasDefaultValue(true);
 
             entity.Property(r => r.MarksObtained)
                   .HasColumnType("decimal(5,2)");

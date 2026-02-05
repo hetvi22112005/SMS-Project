@@ -22,7 +22,7 @@ namespace StudentManagementSystem.Controllers
 
              return View(exam); */
 
-            var examsQuery = _context.Exam
+            var examsQuery = _context.Exams
            .Include(e => e.Course)
            .AsQueryable();
 
@@ -41,7 +41,7 @@ namespace StudentManagementSystem.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
-            var exam = await _context.Exam
+            var exam = await _context.Exams
             .Include(e => e.Course)
             .FirstOrDefaultAsync(e => e.ExamId == id);
 
@@ -61,7 +61,7 @@ namespace StudentManagementSystem.Controllers
         [Authorize(Roles = "Admin,Teacher")]
         public IActionResult Create()
         {
-            ViewBag.Courses = _context.Course.ToList();
+            ViewBag.Courses = _context.Courses.ToList();
             return View();
         }
 
@@ -73,12 +73,12 @@ namespace StudentManagementSystem.Controllers
             if (ModelState.IsValid)
             {
                 exam.CreatedAt = DateTime.Now;
-                _context.Exam.Add(exam);
+                _context.Exams.Add(exam);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Courses = _context.Course.ToList();
+            ViewBag.Courses = _context.Courses.ToList();
             return View(exam);
         }
 
@@ -88,13 +88,13 @@ namespace StudentManagementSystem.Controllers
         [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Edit(int id)
         {
-            var exam = await _context.Exam.FindAsync(id);
+            var exam = await _context.Exams.FindAsync(id);
             if (exam == null)
             {
                 return NotFound();
             }
 
-            ViewBag.Courses = _context.Course.ToList();
+            ViewBag.Courses = _context.Courses.ToList();
             return View(exam);
         }
 
@@ -116,7 +116,7 @@ namespace StudentManagementSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Courses = _context.Course.ToList();
+            ViewBag.Courses = _context.Courses.ToList();
             return View(exam);
         }
     }

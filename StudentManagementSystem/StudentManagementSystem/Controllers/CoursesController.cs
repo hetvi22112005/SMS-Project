@@ -11,11 +11,11 @@ namespace StudentManagementSystem.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Course.Where(c => c.IsActive).ToList());
+            return View(_context.Courses.Where(c => c.IsActive).ToList());
         }
         public IActionResult Details()
         {
-            return View(_context.Course.ToList());
+            return View(_context.Courses.ToList());
         }
     }
 }

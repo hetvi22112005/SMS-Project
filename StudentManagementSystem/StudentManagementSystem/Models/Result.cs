@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using StudentManagementSystem.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudentManagementSystem.Models
 {
     public class Result
     {
+        [Key]
         public int ResultId { get; set; }
 
         public int StudentId { get; set; }
@@ -23,7 +25,7 @@ namespace StudentManagementSystem.Models
         public decimal? Percentage { get; set; }
         public string? Grade { get; set; }
 
-        public string ResultStatus { get; set; } = "Pass";
+        public bool IsPass { get; set; }
 
         public string? Remarks { get; set; }
 

@@ -13,7 +13,7 @@ namespace StudentManagementSystem.Controllers
         }
         public IActionResult Index()
         {
-            var teachers = _context.Teacher
+            var teachers = _context.Teachers
                 .Include(t => t.User)
                 .ToList();
 
@@ -22,7 +22,7 @@ namespace StudentManagementSystem.Controllers
 
         public IActionResult Details()
         {
-            var teachers = _context.Teacher
+            var teachers = _context.Teachers
                 .Include(t => t.User)
                 .ToList();
 
