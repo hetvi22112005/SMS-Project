@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Models;
 using StudentManagementSystem.Models.ViewModels;
@@ -6,6 +7,12 @@ namespace StudentManagementSystem.Controllers
 {
     public class AccountController : Controller
     {
+        [Authorize(Roles = "Admin")]
+        public IActionResult Details()
+        {
+            return View();
+        }
+
         private readonly ApplicationDbContext _context;
 
         public AccountController(ApplicationDbContext context)

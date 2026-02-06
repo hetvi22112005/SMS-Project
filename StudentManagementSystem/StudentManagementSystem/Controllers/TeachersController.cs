@@ -96,6 +96,18 @@ namespace StudentManagementSystem.Controllers
                 return RedirectToAction("Edit", new { id = teacher.TeacherId });
             }
         }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var teacher = _context.Teachers.Find(id);
+            if (teacher != null)
+            {
+                _context.Teachers.Remove(teacher);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult Details()
         {
             var teachers = _context.Teachers
