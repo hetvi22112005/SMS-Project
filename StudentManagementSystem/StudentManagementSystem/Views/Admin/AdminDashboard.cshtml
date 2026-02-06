@@ -1,0 +1,66 @@
+﻿@model StudentManagementSystem.Models.ViewModels.AdminDashboardVM
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/admin-dashboard.css" asp-append-version="true" />
+
+<div class="admin-dashboard">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <p>Student Management System – Overview</p>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="icon">🎓</div>
+            <h3>Total Students</h3>
+            <span class="count">@Model.TotalStudents</span>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">👩‍🏫</div>
+            <h3>Total Teachers</h3>
+            <span class="count">@Model.TotalTeachers</span>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">📚</div>
+            <h3>Active Courses</h3>
+            <span class="count">@Model.TotalCourses</span>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">👥</div>
+            <h3>Active Users</h3>
+            <span class="count">@Model.ActiveUsers</span>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">📝</div>
+            <h3>Published Exams</h3>
+            <span class="count">@Model.PublishedExams</span>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">⏳</div>
+            <h3>Pending Results</h3>
+            <span class="count">@Model.PendingResults</span>
+        </div>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-grid">
+        <a asp-controller="Student" asp-action="Index" class="action-card">Manage Students</a>
+        <a asp-controller="Teacher" asp-action="Index" class="action-card">Manage Teachers</a>
+        <a asp-controller="Exam" asp-action="Index" class="action-card">Manage Exams</a>
+        <a asp-controller="Result" asp-action="Index" class="action-card">View Results</a>
+    </div>
+
+</div>

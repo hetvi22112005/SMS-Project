@@ -1,0 +1,37 @@
+﻿.admin-results-table {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(15, 118, 110, 0.25);
+}
+
+.table thead th {
+    background-color: #0f766e;
+    color: white;
+    font-weight: 500;
+}
+
+.grade {
+    font-weight: 600;
+    color: #0f766e;
+}
+
+.status.pass {
+    color: #15803d;
+    font-weight: 600;
+}
+
+.status.fail {
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+.publish.yes {
+    color: #166534;
+    font-weight: 600;
+}
+
+.publish.no {
+    color: #92400e;
+    font-weight: 600;
+}

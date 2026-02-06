@@ -29,12 +29,14 @@
 
                 <!-- DELETE -->
                 <td class="text-center">
-                    <a asp-action="Delete"
-                       asp-route-id="@s.StudentId"
-                       class="text-danger fs-5"
-                       title="Delete">
+                    <button type="button"
+                            class="btn btn-link text-danger fs-5 p-0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteStudentModal"
+                            data-id="@s.StudentId"
+                            data-name="@s.User.FullName">
                         <i class="bi bi-trash-fill"></i>
-                    </a>
+                    </button>
                 </td>
 
                 <!-- EDIT -->
@@ -48,3 +50,58 @@
         }
     </tbody>
 </table>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteStudentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+
+            <div class="modal-header text-white" style="background:#0f766e;">
+                <h5 class="modal-title">Confirm Delete</h5>
+                <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-center">
+                <i class="bi bi-exclamation-triangle-fill text-danger fs-1 mb-3"></i>
+
+                <p class="fs-5 mb-1">Delete this student?</p>
+                <strong id="studentName"></strong>
+
+                <p class="text-muted mt-2">
+                    This action cannot be undone.
+                </p>
+            </div>
+
+            <div class="modal-footer justify-content-center">
+                <button class="btn btn-outline-secondary px-4"
+                        data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <form id="deleteForm" method="post">
+                    <button type="submit" class="btn btn-danger px-4">
+                        Yes, Delete
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    const deleteModal = document.getElementById('deleteStudentModal');
+
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+
+        const studentId = button.getAttribute('data-id');
+        const studentName = button.getAttribute('data-name');
+
+        document.getElementById('studentName').innerText = studentName;
+
+        const form = document.getElementById('deleteForm');
+        form.action = `/Students/Delete/${studentId}`;
+    });
+</script>
+

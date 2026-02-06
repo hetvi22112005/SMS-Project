@@ -1,0 +1,50 @@
+﻿.teacher-dashboard {
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.teacher-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #5e35b1, #7e57c2);
+    color: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.teacher-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+    .stat-card span {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .stat-card.success {
+        border-left: 6px solid #2e7d32;
+    }
+
+    .stat-card.info {
+        border-left: 6px solid #0277bd;
+    }

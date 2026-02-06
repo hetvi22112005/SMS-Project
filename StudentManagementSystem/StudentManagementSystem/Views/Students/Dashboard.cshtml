@@ -1,0 +1,46 @@
+﻿@model StudentManagementSystem.Models.ViewModels.TeacherDashboardVM
+
+@{
+    ViewData["Title"] = "Teacher Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/teacher-dashboard.css" asp-append-version="true" />
+
+<div class="teacher-dashboard">
+
+    <!-- Profile Header -->
+    <div class="teacher-header">
+        <img src="@Model.Photo" class="teacher-photo" />
+        <div>
+            <h2>@Model.FullName</h2>
+            <p>@Model.Qualification</p>
+            <p>@Model.Department | @Model.Experience years experience</p>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Total Exams</h3>
+            <span>@Model.TotalExams</span>
+        </div>
+
+        <div class="stat-card">
+            <h3>Results Entered</h3>
+            <span>@Model.ResultsEntered</span>
+        </div>
+
+        <div class="stat-card success">
+            <h3>Published Exams</h3>
+            <span>@Model.PublishedExams</span>
+        </div>
+
+        <div class="stat-card info">
+            <h3>Students Evaluated</h3>
+            <span>@Model.StudentsEvaluated</span>
+        </div>
+
+    </div>
+
+</div>

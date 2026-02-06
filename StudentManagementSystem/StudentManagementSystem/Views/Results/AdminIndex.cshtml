@@ -1,0 +1,80 @@
+﻿@model IEnumerable<StudentManagementSystem.Models.Result>
+
+@{
+    ViewData["Title"] = "All Results";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/results-admin.css" asp-append-version="true" />
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">Results Management</h2>
+        <p class="text-muted mb-0">Admin control over all student results</p>
+    </div>
+</div>
+
+@if (Model == null || Model.Count() == 0)
+{
+    <div class="alert alert-warning">
+        No results available.
+    </div>
+}
+else
+{
+    <div class="table-responsive admin-results-table">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Exam</th>
+                    <th>Course</th>
+                    <th>Marks</th>
+                    <th>%</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                    <th>Published</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model)
+                {
+                    <tr>
+                        <td>@r.Student.User.FullName</td>
+                        <td>@r.Exam.ExamName</td>
+                        <td>@r.Course.CourseName</td>
+                        <td>@r.MarksObtained / @r.MaxMarks</td>
+                        <td>@r.Percentage %</td>
+                        <td>
+                            <span class="grade">@r.Grade</span>
+                        </td>
+                        <td>
+                            <span class="status @(r.IsPass ? "pass" : "fail")">
+                                @(r.IsPass ? "PASS" : "FAIL")
+                            </span>
+                        </td>
+                        <td>
+                            <span class="publish @(r.Exam.IsPublished ? "yes" : "no")">
+                                @(r.Exam.IsPublished ? "Yes" : "No")
+                            </span>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@r.ResultId" class="btn btn-sm btn-outline-primary">
+                                Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@r.ResultId" class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </a>
+                            <a asp-action="TogglePublish" asp-route-id="@r.ResultId"
+                               class="btn btn-sm btn-outline-success">
+                                @(r.Exam.IsPublished ? "Unpublish" : "Publish")
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

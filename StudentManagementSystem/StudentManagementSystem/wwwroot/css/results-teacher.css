@@ -1,0 +1,63 @@
+﻿.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.result-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(15, 118, 110, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .result-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 40px rgba(15, 118, 110, 0.35);
+    }
+
+.card-header h5 {
+    color: #0f766e;
+    margin-bottom: 4px;
+}
+
+.course {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.meta {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #374151;
+}
+
+.status {
+    margin-top: 14px;
+    font-weight: 600;
+}
+
+    .status.published {
+        color: #15803d;
+    }
+
+    .status.draft {
+        color: #b45309;
+    }
+
+.card-actions {
+    margin-top: 18px;
+    text-align: right;
+}
+
+.btn-manage {
+    text-decoration: none;
+    background: #0f766e;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}

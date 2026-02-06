@@ -1,0 +1,57 @@
+﻿@model IEnumerable<StudentManagementSystem.Models.Exam>
+
+@{
+    ViewData["Title"] = "Manage Results";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/results-teacher.css" asp-append-version="true" />
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">Manage Results</h2>
+        <p class="text-muted mb-0">Exam-wise result management</p>
+    </div>
+</div>
+
+@if (Model == null || Model.Count() == 0)
+{
+    <div class="alert alert-info">
+        No exams found for result entry.
+    </div>
+}
+else
+{
+    <div class="results-grid">
+        @foreach (var exam in Model)
+        {
+            <div class="result-card">
+
+                <div class="card-header">
+                    <h5>@exam.ExamName</h5>
+                    <span class="course">@exam.Course.CourseName</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="meta">
+                        <span><i class="bi bi-mortarboard"></i> Semester @exam.Semester</span>
+                        <span><i class="bi bi-people"></i> @exam.Result.Count() Students</span>
+                    </div>
+
+                    <div class="status @(exam.IsPublished ? "published" : "draft")">
+                        @(exam.IsPublished ? "Results Published" : "Draft Results")
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <a asp-action="Details"
+                       asp-route-examId="@exam.ExamId"
+                       class="btn-manage">
+                        Manage Results
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}

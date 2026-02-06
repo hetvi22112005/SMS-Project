@@ -1,6 +1,65 @@
-﻿@{
-    ViewData["Title"] = "Results";
+﻿@model IEnumerable<StudentManagementSystem.Models.Result>
+
+@{
+    ViewData["Title"] = "My Results";
 }
 
-<h2>Results</h2>
-<p>UI coming soon...</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/results.css" asp-append-version="true" />
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">My Results</h2>
+        <p class="text-muted mb-0">Your exam performance overview</p>
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Results are not available yet.
+    </div>
+}
+else
+{
+    <div class="results-grid">
+        @foreach (var result in Model)
+        {
+            <div class="result-card">
+
+                <div class="result-header">
+                    <h5>@result.Exam.ExamName</h5>
+                    <span class="course-name">
+                        @result.Exam.Course.CourseName
+                    </span>
+                </div>
+
+                <div class="result-meta">
+                    <span>
+                        <i class="bi bi-calendar-event"></i>
+                        @result.Exam.ExamDate.ToString("dd MMM yyyy")
+                    </span>
+                </div>
+
+                <div class="marks-section">
+                    <span class="marks">
+                        @result.MarksObtained / @result.Exam.MaxMarks
+                    </span>
+
+                    <span class="status @(result.IsPass ? "pass" : "fail")">
+                        @(result.IsPass ? "PASS" : "FAIL")
+                    </span>
+                </div>
+
+                <div class="result-actions">
+                    <a asp-action="Details"
+                       asp-route-id="@result.ResultId"
+                       class="btn-view">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}

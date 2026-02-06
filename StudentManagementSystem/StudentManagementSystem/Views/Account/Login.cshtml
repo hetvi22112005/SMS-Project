@@ -1,4 +1,5 @@
-﻿@{
+﻿@model StudentManagementSystem.Models.ViewModels.LoginViewModel;
+@{
     ViewData["Title"] = "Login";
     Layout = null;
 }
@@ -31,50 +32,57 @@
 
             <!-- Form -->
             <div class="p-4">
+                <form asp-action="Login" method="post">
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Error</div>
+                    }
 
-                <!-- Email -->
-                <label class="form-label fw-semibold text-success">Student ID / Email</label>
-                <div class="input-group auth-input-group mb-3">
-                    <span class="input-group-text">
-                        <i data-feather="user"></i>
-                    </span>
-                    <input type="text" class="form-control auth-input" placeholder="Enter your ID or email">
-                </div>
-
-                <!-- Password -->
-                <label class="form-label fw-semibold text-success">Password</label>
-                <div class="input-group auth-input-group mb-3">
-                    <span class="input-group-text">
-                        <i data-feather="lock"></i>
-                    </span>
-                    <input type="password" class="form-control auth-input" placeholder="Enter your password">
-                    <span class="input-group-text auth-eye">
-                        <i data-feather="eye"></i>
-                    </span>
-                </div>
-
-                <!-- Remember + Forgot -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox">
-                        <label class="form-check-label">Remember me</label>
+                    <!-- Email -->
+                    <label class="form-label fw-semibold text-success">Student ID / Email</label>
+                    <div class="input-group auth-input-group mb-3">
+                        <span class="input-group-text">
+                            <i data-feather="user"></i>
+                        </span>
+                        <input asp-for="Email" value="@ViewBag.RememberedEmail" class="form-control auth-input" placeholder="Enter your email">
                     </div>
-                    <a href="#" class="text-success text-decoration-none">Forgot password?</a>
-                </div>
 
-                <!-- Button -->
-                <button class="btn auth-btn w-100">
-                    Sign In <i data-feather="log-in" class="ms-2"></i>
-                </button>
+                    <!-- Password -->
+                    <label class="form-label fw-semibold text-success">Password</label>
+                    <div class="input-group auth-input-group mb-3">
+                        <span class="input-group-text">
+                            <i data-feather="lock"></i>
+                        </span>
+                        <input asp-for="Password" type="password" class="form-control auth-input" placeholder="Enter your password">
+                        <span class="input-group-text auth-eye">
+                            <i data-feather="eye"></i>
+                        </span>
+                    </div>
 
-                <!-- Register -->
-                <p class="text-center mt-4 mb-0">
-                    New student?
-                    <a href="/Account/Register" class="text-success fw-semibold text-decoration-none">
-                        Register here
-                    </a>
-                </p>
+                    <!-- Remember + Forgot -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="RememberMe">
+                            <label class="form-check-label">Remember me</label>
+                        </div>
+                        <a asp-action="ForgotPassword" class="text-success text-decoration-none">
+                            Forgot password?
+                        </a>
+                    </div>
 
+                    <!-- Button -->
+                    <button class="btn auth-btn w-100">
+                        Sign In <i data-feather="log-in" class="ms-2"></i>
+                    </button>
+
+                    <!-- Register -->
+                    <p class="text-center mt-4 mb-0">
+                        New student?
+                        <a href="/Account/Register" class="text-success fw-semibold text-decoration-none">
+                            Register here
+                        </a>
+                    </p>
+                </form>
             </div>
         </div>
 

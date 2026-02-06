@@ -1,4 +1,5 @@
-﻿@{
+﻿@model StudentManagementSystem.Models.ViewModels.RegisterViewModel
+@{
     ViewData["Title"] = "Student Registration";
     Layout = null;
 }
@@ -35,8 +36,7 @@
 
         <!-- FORM -->
         <div class="auth-body">
-            <form>
-
+            <form asp-action="Register" method="post">
                 <!-- Full Name -->
                 <div class="mb-4">
                     <label class="form-label">Full Name</label>
@@ -44,7 +44,7 @@
                         <span class="input-group-text">
                             <i class="bi bi-person"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Enter full name" />
+                        <input asp-for="FullName" class="form-control" placeholder="Enter full name" />
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                         <span class="input-group-text">
                             <i class="bi bi-envelope"></i>
                         </span>
-                        <input type="email" class="form-control" placeholder="example@gmail.com" />
+                        <input asp-for="Email" type="email" class="form-control" placeholder="example@gmail.com" />
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@
                         <span class="input-group-text">
                             <i class="bi bi-lock"></i>
                         </span>
-                        <input type="password" class="form-control" placeholder="Enter password" />
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
                     </div>
                 </div>
 
@@ -75,6 +75,11 @@
                     <label class="form-label">Role</label>
                     <input type="text" class="form-control bg-light" value="Student" readonly />
                 </div>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+                }
 
                 <!-- Button -->
                 <button type="submit" class="btn auth-btn w-100">

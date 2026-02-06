@@ -1,0 +1,77 @@
+﻿@model StudentManagementSystem.Models.Teacher
+@{
+    ViewData["Title"] = "Edit Teacher";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header text-white" style="background-color:#0d6f6a;">
+            <h4>Edit Teacher</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="alert alert-info">
+                Are you sure you want to edit this teacher?
+            </div>
+
+            @using (Html.BeginForm("Edit", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(m => m.TeacherId)
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.User.FullName)
+                    @Html.TextBoxFor(m => m.User.FullName, new { @class = "form-control" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.User.Email)
+                    @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control", type = "email" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Qualification)
+                    @Html.TextBoxFor(m => m.Qualification, new { @class = "form-control" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Department)
+                    @Html.DropDownListFor(
+                    m => m.Department,
+                                new List<SelectListItem>
+                                {
+                                new SelectListItem { Text = "Select Department", Value = "" },
+                                new SelectListItem { Text = "Computer Science", Value = "Computer Science" },
+                                new SelectListItem { Text = "Information Technology", Value = "Information Technology" },
+                                new SelectListItem { Text = "Commerce", Value = "Commerce" },
+                                new SelectListItem { Text = "Management", Value = "Management" }
+                                },
+                                new { @class = "form-select" }
+                                )
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Experience, "Experience (Years)")
+                @Html.TextBoxFor(m => m.Experience, new { @class = "form-control", type = "number", min = "0" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Bio)
+                @Html.TextAreaFor(m => m.Bio, new { @class = "form-control", rows = "3" })
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Photo</label>
+                <input type="file" name="PhotoFile" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn text-white" style="background-color:#0d6f6a;">
+                OK
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Cancel
+            </a>
+                        }
+        </div>
+    </div>
+</div>

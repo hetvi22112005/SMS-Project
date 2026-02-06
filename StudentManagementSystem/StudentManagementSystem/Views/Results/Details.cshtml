@@ -1,0 +1,155 @@
+﻿@model Result
+
+@{
+    ViewData["Title"] = "Result Details";
+}
+
+<style>
+    .result-header {
+        background: linear-gradient(135deg, #4e73df, #1cc88a);
+        color: white;
+        padding: 20px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .student-photo {
+        width: 150px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 4px solid #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .info-table th {
+        width: 30%;
+        background-color: #f8f9fc;
+    }
+
+    .badge-pass {
+        background-color: #1cc88a;
+    }
+
+    .badge-fail {
+        background-color: #e74a3b;
+    }
+
+    @@media print {
+        button, a {
+            display: none !important;
+        }
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+
+        <!-- Header -->
+        <div class="result-header text-center">
+            <h2 class="fw-bold mb-1">STUDENT RESULT</h2>
+            <p class="mb-0">Student Management System</p>
+        </div>
+
+        <div class="card-body">
+
+            <!-- Student Section -->
+            <div class="row mb-4 align-items-center">
+                <div class="col-md-3 text-center">
+                    <img src="~/uploads/students/@(Model.Student?.Photo ?? "default.png")"
+                         class="student-photo" />
+                </div>
+
+                <div class="col-md-9">
+                    <table class="table table-bordered info-table">
+                        <tr>
+                            <th>Student Name</th>
+                            <td>@(Model.Student?.User?.FullName ?? "N/A")</td>
+                        </tr>
+                        <tr>
+                            <th>Enrollment No</th>
+                            <td>@(Model.Student?.EnrollmentNo ?? "N/A")</td>
+                        </tr>
+                        <tr>
+                            <th>Course</th>
+                            <td>@(Model.Course?.CourseName ?? "N/A")</td>
+                        </tr>
+                        <tr>
+                            <th>Semester</th>
+                            <td>@(Model.Exam?.Semester.ToString() ?? "N/A")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Exam Details -->
+            <h5 class="fw-bold text-primary mb-3">📘 Exam Information</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">Exam Name</th>
+                    <td>@(Model.Exam?.ExamName ?? "N/A")</td>
+                </tr>
+                <tr>
+                    <th>Exam Type</th>
+                    <td>@(Model.Exam?.ExamType ?? "N/A")</td>
+                </tr>
+                <tr>
+                    <th>Exam Date</th>
+                    <td>@(Model.Exam?.ExamDate.ToString("dd MMM yyyy") ?? "N/A")</td>
+                </tr>
+            </table>
+
+            <!-- Marks Section -->
+            <h5 class="fw-bold text-primary mt-4 mb-3">📊 Performance</h5>
+            <table class="table table-bordered text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Marks Obtained</th>
+                        <th>Max Marks</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.MarksObtained</td>
+                        <td>@Model.MaxMarks</td>
+                        <td class="fw-bold">@Model.Percentage %</td>
+                        <td class="fw-bold text-uppercase">@Model.Grade</td>
+                        <td>
+                            @if (Model.IsPass)
+                            {
+                                <span class="badge badge-pass px-3 py-2">PASS</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-fail px-3 py-2">FAIL</span>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Footer -->
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p><strong>Teacher:</strong> @(Model.Teacher?.User?.FullName ?? "N/A")</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p><strong>Result Date:</strong> @Model.CreatedAt.ToString("dd MMM yyyy")</p>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="text-center mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary me-2">
+                    ← Back
+                </a>
+                <button class="btn btn-primary" onclick="window.print()">
+                    🖨 Print Result
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
