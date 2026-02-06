@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace StudentManagementSystem.Filter
 {
-    public class RoleAthorizeAttribute:ActionFilterAttribute
+    public class RoleAthorizeAttribute : ActionFilterAttribute
     {
         private readonly string _role;
 
@@ -33,3 +33,4 @@ namespace StudentManagementSystem.Filter
 
         }
     }
+}
