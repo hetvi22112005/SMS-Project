@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StudentManagementSystem.Filter;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -17,5 +18,20 @@ namespace StudentManagementSystem.Controllers
         {
             return View(_context.Courses.ToList());
         }
+        [HttpPost]
+       
+        public IActionResult Delete(int id)
+        {
+            var course = _context.Courses.Find(id);
+
+            if (course == null)
+                return RedirectToAction("Index");
+
+            _context.Courses.Remove(course);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
