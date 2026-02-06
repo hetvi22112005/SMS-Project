@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StudentManagementSystem.Filter;
 using StudentManagementSystem.Models.ViewModels;
 
 namespace StudentManagementSystem.Controllers
 {
+    [RoleAthorizeAttribute("Admin")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;

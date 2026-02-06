@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StudentManagementSystem.Filter;
 using StudentManagementSystem.Models;
 using StudentManagementSystem.Models.ViewModels;
-using Microsoft.AspNetCore.Http;
 
 namespace StudentManagementSystem.Controllers
-{
+    {
+    [RoleAthorizeAttribute("Student")]
     public class StudentsController : Controller
     {
 
@@ -92,6 +95,7 @@ namespace StudentManagementSystem.Controllers
 
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Admin")]
 
         public IActionResult Details()
         {

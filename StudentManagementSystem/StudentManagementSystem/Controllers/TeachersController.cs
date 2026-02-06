@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StudentManagementSystem.Filter;
 using StudentManagementSystem.Models;
 using StudentManagementSystem.Models.ViewModels;
 
 namespace StudentManagementSystem.Controllers
 {
+    [RoleAthorizeAttribute("Teacher")]
     public class TeachersController : Controller
     {
         private readonly ApplicationDbContext _context;
